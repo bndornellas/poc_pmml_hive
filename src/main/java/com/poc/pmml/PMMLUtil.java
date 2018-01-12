@@ -1,4 +1,4 @@
-package com.itau.pmml;
+package com.poc.pmml;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

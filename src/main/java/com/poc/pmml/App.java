@@ -1,4 +1,4 @@
-package com.itau.pmml;
+package com.poc.pmml;
 
 import org.dmg.pmml.FieldName;
 

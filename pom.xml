@@ -64,7 +64,7 @@
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
                         <manifest>
-                            <mainClass>com.itau.pmml.App</mainClass>
+                            <mainClass>com.poc.pmml.App</mainClass>
                         </manifest>
                     </archive>
 
