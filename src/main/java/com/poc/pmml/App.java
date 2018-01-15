@@ -72,6 +72,7 @@ public class App {
 
         Map<FieldName, ?> evaluate = evaluator.evaluate(arguments);
 
+
         Collection<?> values = evaluate.values();
         for (Object o:
              values) {
