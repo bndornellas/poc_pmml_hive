@@ -16,9 +16,11 @@ import org.jpmml.evaluator.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class PMMLUtil {
@@ -50,17 +52,16 @@ public class PMMLUtil {
             _path = path;
 
 
-                InputStream is = new FileInputStream(path);
-                pmml = org.jpmml.model.PMMLUtil.unmarshal(is);
+            InputStream is = new FileInputStream(path);
+            pmml = org.jpmml.model.PMMLUtil.unmarshal(is);
 
-                ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
-                ModelEvaluator<?> modelEvaluator = modelEvaluatorFactory.newModelEvaluator(pmml);
-                evaluator = modelEvaluator;
+            ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
+            ModelEvaluator<?> modelEvaluator = modelEvaluatorFactory.newModelEvaluator(pmml);
+            evaluator = modelEvaluator;
 
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new UDFArgumentException(e.getMessage());
-        }
-        catch (SAXException e) {
+        } catch (SAXException e) {
             throw new UDFArgumentException(e.getMessage());
 
         } catch (JAXBException e) {
@@ -68,13 +69,16 @@ public class PMMLUtil {
         }
 
 
-
     }
-    public PMMLUtil(String path,boolean teste) throws UDFArgumentException {
+
+    public PMMLUtil(String path, boolean teste) throws UDFArgumentException {
         try {
             _path = path;
 
             InputStream is = getClass().getResourceAsStream(path);
+
+            InputStream stream = new ByteArrayInputStream(path.getBytes(StandardCharsets.UTF_8.name()));
+
 
             pmml = org.jpmml.model.PMMLUtil.unmarshal(is);
 
@@ -87,7 +91,9 @@ public class PMMLUtil {
         } catch (JAXBException e) {
             throw new UDFArgumentException(e.getMessage());
         }
-
+        catch (Exception ex){
+            throw new UDFArgumentException(ex.getMessage());
+        }
 
 
     }
