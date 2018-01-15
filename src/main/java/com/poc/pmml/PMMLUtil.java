@@ -16,6 +16,8 @@ import org.jpmml.evaluator.*;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
 
@@ -44,6 +46,31 @@ public class PMMLUtil {
     }
 
     public PMMLUtil(String path) throws UDFArgumentException {
+        try {
+            _path = path;
+
+
+                InputStream is = new FileInputStream(path);
+                pmml = org.jpmml.model.PMMLUtil.unmarshal(is);
+
+                ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
+                ModelEvaluator<?> modelEvaluator = modelEvaluatorFactory.newModelEvaluator(pmml);
+                evaluator = modelEvaluator;
+
+        }catch (FileNotFoundException e) {
+            throw new UDFArgumentException(e.getMessage());
+        }
+        catch (SAXException e) {
+            throw new UDFArgumentException(e.getMessage());
+
+        } catch (JAXBException e) {
+            throw new UDFArgumentException(e.getMessage());
+        }
+
+
+
+    }
+    public PMMLUtil(String path,boolean teste) throws UDFArgumentException {
         try {
             _path = path;
 

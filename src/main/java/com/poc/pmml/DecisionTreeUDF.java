@@ -34,9 +34,10 @@ public class DecisionTreeUDF extends GenericUDF {
     public ObjectInspector initialize(ObjectInspector[] arguments) throws UDFArgumentException {
         LOG.info("meulog init");
 
-        inputOI = new ArrayList<>();
+
+
         LOG.info("meulog tentando evaluator");
-        _evaluator = new PMMLUtil("DecisionTreePoc.pmml");
+        _evaluator = new PMMLUtil("/home/admhadoop/sample/DecisionTreePoc.pmml");
         LOG.info("meulog evaluator" + _evaluator);
         _inputObjectInspector = arguments;
         for (ObjectInspector o :
@@ -51,6 +52,8 @@ public class DecisionTreeUDF extends GenericUDF {
 
     @Override
     public Object evaluate(DeferredObject[] arguments) throws HiveException {
+
+
         return _evaluator.evaluateComplex(_inputObjectInspector, arguments);
 
     }
