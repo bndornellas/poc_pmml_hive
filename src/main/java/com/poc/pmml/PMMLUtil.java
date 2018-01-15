@@ -75,12 +75,12 @@ public class PMMLUtil {
         try {
             _path = path;
 
-            InputStream is = getClass().getResourceAsStream(path);
+
 
             InputStream stream = new ByteArrayInputStream(path.getBytes(StandardCharsets.UTF_8.name()));
 
 
-            pmml = org.jpmml.model.PMMLUtil.unmarshal(is);
+            pmml = org.jpmml.model.PMMLUtil.unmarshal(stream);
 
             ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
             ModelEvaluator<?> modelEvaluator = modelEvaluatorFactory.newModelEvaluator(pmml);
