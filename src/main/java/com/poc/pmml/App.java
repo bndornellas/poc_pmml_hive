@@ -26,7 +26,7 @@ public class App {
 
 
         PMML pmml;
-        InputStream is = new FileInputStream("/Users/bndornellas/desenvolvimento/pmml/src/main/resources/com/itau/pmml/DecisionTreePoc.pmml");
+        InputStream is = new FileInputStream("./DecisionTreePoc.pmml");
         pmml = org.jpmml.model.PMMLUtil.unmarshal(is);
 
         ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
