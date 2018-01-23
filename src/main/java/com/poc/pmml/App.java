@@ -1,17 +1,25 @@
 package com.poc.pmml;
 
-import org.dmg.pmml.FieldName;
-
-import org.dmg.pmml.PMML;
-import org.jpmml.evaluator.*;
-import org.xml.sax.SAXException;
-
-import javax.xml.bind.JAXBException;
 import java.io.FileInputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.bind.JAXBException;
+
+import org.dmg.pmml.FieldName;
+import org.dmg.pmml.PMML;
+import org.jpmml.evaluator.Evaluator;
+import org.jpmml.evaluator.FieldValue;
+import org.jpmml.evaluator.InputField;
+import org.jpmml.evaluator.ModelEvaluator;
+import org.jpmml.evaluator.ModelEvaluatorFactory;
+import org.jpmml.evaluator.OutputField;
+import org.jpmml.evaluator.TargetField;
+import org.xml.sax.SAXException;
 
 public class App {
 
